@@ -1,0 +1,15 @@
+
+<table class="table table-striped">
+    <thead><th>Имя пользователя <a href="/sort/username/asc"><?=$this->UpBtn?></a>
+        <a href="/sort/username/desc"><?=$this->DownBtn?></a></th>
+    <th>email <a href="/sort/email/asc"><?=$this->UpBtn?></a><a href="/sort/email/desc"><?=$this->DownBtn?></a></th>
+    <th>Статус <a href="/sort/state/asc"><?=$this->UpBtn?></a><a href="/sort/state/desc"><?=$this->DownBtn?></a></th>
+    <?if($_SESSION['autorization']){?>
+        <th>Действия</th>
+    <?}?>
+
+    </thead>
+        <?=$table_content?>
+</table>
+<?=$tabPage?>
+<script src="/js/tasks.js"></script>

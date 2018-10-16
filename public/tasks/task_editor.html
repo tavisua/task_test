@@ -1,0 +1,59 @@
+<div style="height: 5px"></div>
+<form id = "taskform" action="/save/<?=$id?>" method="post" enctype="multipart/form-data">
+    <table >
+    <tr>
+        <td>Имя пользователя</td>
+        <td><input class="parameter" name="username" <?=$id?'readonly':''?> id="username" value="<?=$username?>"></td>
+    </tr>
+    <tr>
+        <td>email</td>
+        <td><input class="parameter" name="email" <?=$id?'readonly':''?>  id="email" value="<?=$email?>"></td>
+    </tr>
+    <tr>
+        <td>Текст задачи</td>
+        <td><textarea class="parameter" rows="4" id="task" name="task" cols="50" maxlength="255" placeholder="Введите текст задачи"><?=$task?></textarea></td>
+    </tr>
+    <?if(!$id){?>
+        <tr>
+            <td>Изображение</td>
+            <td><input type="file" id = "picture" name = "picture" accept=".GIF,.JPG,.JPEG,.PNG" ></td>
+        </tr>
+    <?}else{?>
+        <tr>
+            <td>Изображение</td>
+            <td><img src="<?=$picture?>" ></td>
+        </tr>
+        <tr>
+            <td>Готовность</td>
+            <td><input type="checkbox" name="state" <?=$state?checked:false?>></td>
+        </tr>
+    <?}?>
+    </table>
+    <?if(!$id){?>
+    <input id="saveBtn" type="submit" value="Сохранить"> <input type="button" value="Предосмотр" onclick="Preview()">
+    <?}?>
+</form>
+<script src="/js/tasks.js"></script>
+
+<div class="popup" id="preview">
+    <table class="table table-striped">
+        <tr>
+            <td>Имя пользователя</td>
+            <td id="username_p"></td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td id="email_p"></td>
+        </tr>
+        <tr>
+            <td>Текст задачи</td>
+            <td id="task_p"></td>
+        </tr>
+        <tr>
+            <td>Изображение</td>
+            <td><img id="previewImg" src="" ></td>
+        </tr>
+    </table>
+    <button onclick="close_form();">Закрыть</button>
+</div>
+
