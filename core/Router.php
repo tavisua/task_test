@@ -21,7 +21,6 @@ class Router {
 	}
 
 	function run(){
-
 		$uri = $this->getURI();
 		//Проверяю наличие запроса в config/routes.php
 		foreach ($this->routes as $uriPannert=>$path) {

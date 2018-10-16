@@ -7,8 +7,8 @@ return array(
 	'save/[0-9]+'=>'tasks/saveTask',
 	'page/[0-9]+'=>'tasks/viewTasks/$1',
 	'sort/[a-z]+/[a-z]+'=>'tasks/viewSortTasks/$1/$2',
-	'autorization'=>'autorization/index',
+	'auth'=>'autorization/index',
 	'validation'=>'autorization/validate',
-	'exit'=>'tasks/exitAdmin',
+	'exit'=>'autorization/exitAdmin',
 	'edit/[0-9]+'=>'tasks/editTask',
 );

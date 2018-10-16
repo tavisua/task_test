@@ -9,13 +9,6 @@ class TasksController {
 	function index(){
 		$this->showTasks();//Отображение списка задач
 	}
-	/*Завершение сессии
-	 * */
-	function exitAdmin(){
-		session_destroy();
-		unset($_SESSION['autorization']);
-		$this->showTasks();
-	}
 
 	/*Отображение списка задач
 	 * */

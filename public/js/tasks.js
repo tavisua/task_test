@@ -11,10 +11,11 @@ function createTask(){
 }
 
 function Autorization() {
-    if($('#autorizationBtn').html()=='Выйти')
-        location.href='/exit';
-    else
-        location.href='/autorization';
+    if($('#autorizationBtn').html()=='Выйти') {
+        location.href = '/exit';
+    }else {
+        location.href = '/auth';
+    }
 }
 
 //При изменении значения в форме заданий - разрешаю submit
