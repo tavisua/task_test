@@ -2,8 +2,8 @@
 
 include_once APP.'/model/Tasks.php';
 class TasksController {
-	protected $UpBtn = '<img src="../../img/1uparrow.png" alt="">';
-	protected $DownBtn = '<img src="../../img/1downarrow.png" alt="">';
+	protected $UpBtn = '<img src="/img/1uparrow.png" alt="">';
+	protected $DownBtn = '<img src="/img/1downarrow.png" alt="">';
 	/*Отображает список сохраненных задач
 	 * */
 	function index(){
@@ -95,9 +95,8 @@ class TasksController {
 	/*Просмотр страницы с указанной сортировкой и номером
 	 *@param int ID задачи
 	 *@return string HTML для отображения предварительного просмотре  */
-	function viewSortTasks($field, $order){
-
-		$html = Tasks::getTasksList(1, $field, $order);//Загружаю перечень задач
+	function viewSortTasks($field, $order, $page = 1){
+		$html = Tasks::getTasksList($page, $field, $order);//Загружаю перечень задач
 		$table_content = $html['table_content'];
 		$tabPage = $html['tabPage'];
 		include_once WWW.'/tasks/tasklist.html';

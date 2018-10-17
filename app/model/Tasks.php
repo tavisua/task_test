@@ -9,25 +9,28 @@ class Tasks {
 	 * @param string columnName
 	 * @param string order
 	 * @result array*/
-	function getTasksList($page = 1,  $columnSort='', $order = '', $per_page = 3){
+	function getTasksList($page = 1,  $columnSort='', $order = 'asc', $per_page = 3){
 		global $db;
 		$sql = "select * from tasks where 1 ";
 		if($columnSort)
-			$sql .= "order by ".$columnSort;
-		if($order)
-			$sql .= " ".$order;
+			$sql .= "order by ".$columnSort." ".$order;
 
 		$res = $db->query($sql);
+
 		//Создаю html табуляции страниц
 		$pageCount = ceil($res->num_rows/$per_page);
 		$tabPage = '<div class="dataTables_paginate paging_simple_numbers" id="tenderTable_paginate"><ul class="pagination">';
-		$tabPage.='<li class="paginate_button previous '.($page > 1?'':'disabled').'" tabindex="0"><a href="/page/'.($page>1?($page-1):1).'">Пред.</a></li>';
+		if(!$columnSort)
+			$show_type = 'page';
+		else
+			$show_type = 'sort/'.$columnSort.'/'.$order;
+		$tabPage.='<li class="paginate_button previous '.($page > 1?'':'disabled').'" tabindex="0"><a href="/'.$show_type.'/'.($page>1?($page-1):1).'">Пред.</a></li>';
 
 		for($i=1; $i<=$pageCount; $i++){
-			$tabPage.='<li class="paginate_button '.($page == $i?'active':'').'" tabindex="0"><a href="/page/'.$i.'">'.$i.'</a></li>';
+			$tabPage.='<li class="paginate_button '.($page == $i?'active':'').'" tabindex="0"><a href="/'.$show_type.'/'.$i.'">'.$i.'</a></li>';
 		}
 
-		$tabPage.='<li class="paginate_button next '.($page<$pageCount?'':'disabled').' " tabindex="0"><a href="/page/'.($i<$pageCount?$i:$pageCount).'">След.</a></li>';
+		$tabPage.='<li class="paginate_button next '.($page<$pageCount?'':'disabled').' " tabindex="0"><a href="/'.$show_type.'/'.($i<$pageCount?$i:$pageCount).'">След.</a></li>';
 		$tabPage.='</ul></div>';
 
 		$table_content = '';
